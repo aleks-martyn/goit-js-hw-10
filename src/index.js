@@ -10,13 +10,13 @@ const infoEl = document.querySelector('.country-info');
 inputEl.addEventListener('input', handleInput);
 
 function handleInput(event) {
-  fetchCountries(name)
+  fetchCountries(event)
     .then(countries => renderList(countries))
     .catch(error => console.log(error));
 }
 
 function fetchCountries(name) {
-  return;
+  return
   fetch(
     'https://restcountries.com/v3.1/all?fields=name.official,capital,population,flags.svg,languages'
   ).then(response => {
