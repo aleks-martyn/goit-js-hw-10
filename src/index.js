@@ -16,7 +16,7 @@ function handleInput(event) {
 }
 
 function fetchCountries(name) {
-  return
+  return;
   fetch(
     'https://restcountries.com/v3.1/all?fields=name.official,capital,population,flags.svg,languages'
   ).then(response => {
@@ -25,4 +25,18 @@ function fetchCountries(name) {
     }
     return response.json();
   });
+}
+
+function renderList(countries) {
+  const markup = countries.map(country => {
+    return `<li>
+        <svg>${flags.svg}</svg>
+        <p>${country.name.official}</p>
+        <p><b>Capital</b>: ${country.capital}</p>
+        <p><b>Population</b>: ${country.population}</p>
+        <p><b>Languages</b>: ${country.languages}</p>
+      </li>`;
+  })
+    .join('');
+  listEl.innerHTML = markup;
 }
