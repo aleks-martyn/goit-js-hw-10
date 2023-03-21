@@ -7,7 +7,7 @@ const inputEl = document.querySelector('#search-box');
 const listEl = document.querySelector('.country-list');
 const infoEl = document.querySelector('.country-info');
 
-inputEl.addEventListener('input', handleInput);
+inputEl.addEventListener('input', debounce(handleInput, 300));
 
 function handleInput(event) {
   fetchCountries(event)
