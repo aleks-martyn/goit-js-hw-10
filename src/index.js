@@ -29,12 +29,13 @@ function fetchCountries(name) {
 function renderList(countries) {
   const markup = countries
     .map(country => {
+      const languagesArray = Object.values(country.languages);
       return `<li>
-        <img src="${country.flags.svg}" alt="${country.flags.alt}" width=100 height=50 />
+        <img src="${country.flags.svg}" alt="${country.flags.alt}" width=70 height=50 />
         <p>${country.name.official}</p>
         <p><b>Capital</b>: ${country.capital}</p>
         <p><b>Population</b>: ${country.population}</p>
-        <p><b>Languages</b>: ${country.languages}</p>
+        <p><b>Languages</b>: ${languagesArray}</p>
       </li>`;
     })
     .join('');
