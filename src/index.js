@@ -7,7 +7,7 @@ const inputEl = document.querySelector('#search-box');
 const listEl = document.querySelector('.country-list');
 const infoEl = document.querySelector('.country-info');
 
-inputEl.addEventListener('input', debounce(handleInput, 300));
+inputEl.addEventListener('input', debounce(handleInput, DEBOUNCE_DELAY));
 
 function handleInput(event) {
   fetchCountries(event)
@@ -29,7 +29,7 @@ function fetchCountries(name) {
 function renderList(countries) {
   const markup = countries
     .map(country => {
-      if (country.name.official.toLowerCase().includes(inputEl.value.toLowerCase()))
+      if (country.name.official.toLowerCase().includes(inputEl.value.toLowerCase().trim()))
       return `<li style="display:flex; align-items:center; gap:10px">
         <img src="${country.flags.svg}" alt="${country.flags.alt}" width=35 height=25 />
         <p>${country.name.official}</p>
