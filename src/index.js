@@ -29,7 +29,7 @@ function fetchCountries(name) {
 function renderList(countries) {
   const markup = countries
     .map(country => {
-      return `<li>
+      return `<li style="display:flex; align-items:center; gap:10px">
         <img src="${country.flags.svg}" alt="${country.flags.alt}" width=35 height=25 />
         <p>${country.name.official}</p>
       </li>`;
