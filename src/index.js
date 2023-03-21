@@ -29,15 +29,26 @@ function fetchCountries(name) {
 function renderList(countries) {
   const markup = countries
     .map(country => {
-      const languagesArray = Object.values(country.languages);
       return `<li>
-        <img src="${country.flags.svg}" alt="${country.flags.alt}" width=70 height=50 />
+        <img src="${country.flags.svg}" alt="${country.flags.alt}" width=35 height=25 />
+        <p>${country.name.official}</p>
+      </li>`;
+    })
+    .join('');
+  
+  listEl.innerHTML = markup;
+}
+
+function renderCountryInfo(country) {
+  const languagesArray = Object.values(country.languages);
+
+  const markup = `<div>
+        <img src="${country.flags.svg}" alt="${country.flags.alt}" width=35 height=25 />
         <p>${country.name.official}</p>
         <p><b>Capital</b>: ${country.capital}</p>
         <p><b>Population</b>: ${country.population}</p>
         <p><b>Languages</b>: ${languagesArray}</p>
-      </li>`;
-    })
-    .join('');
-  infoEl.innerHTML = markup;
+      </div>`;
+  
+  infoEl.innerHTML = markup.join('');
 }
