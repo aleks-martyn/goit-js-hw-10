@@ -12,7 +12,6 @@ inputEl.addEventListener('input', debounce(handleInput, DEBOUNCE_DELAY));
 function handleInput(event) {
   fetchCountries(event)
     .then(countries => {
-      console.log(countries);
       const array = [];
       for (const country of countries) {
         if (
