@@ -22,7 +22,11 @@ function handleInput(event) {
           array.push(country);
       }
       console.log(array);
-      renderList(array);
+      if (array.length === 1) {
+        renderCountryInfo(array);
+      } else {
+        renderList(array);
+      }
     })
     .catch(error => console.log(error));
 }
@@ -54,13 +58,18 @@ function renderList(countries) {
 function renderCountryInfo(countries) {
   const languagesArray = Object.values(countries[0].languages);
 
-  const markup = `<div>
-        <img src="${countries[0].flags.svg}" alt="${countries[0].flags.alt}" width=35 height=25 />
-        <p>${countries[0].name.official}</p>
-        <p><b>Capital</b>: ${countries[0].capital}</p>
-        <p><b>Population</b>: ${countries[0].population}</p>
+  const markup = countries
+    .map(country => {
+      return `<div>
+        <img src="${country.flags.svg}" alt="${country.flags.alt}" width=35 height=25 />
+        <p>${country.name.official}</p>
+        <p><b>Capital</b>: ${country.capital}</p>
+        <p><b>Population</b>: ${country.population}</p>
         <p><b>Languages</b>: ${languagesArray}</p>
       </div>`;
+    })
+    .join('');
+  console.log(markup);
 
-  infoEl.innerHTML = markup.join('');
+  infoEl.innerHTML = markup;
 }
