@@ -12,6 +12,7 @@ inputEl.addEventListener('input', debounce(handleInput, DEBOUNCE_DELAY));
 function handleInput(event) {
   fetchCountries(event)
     .then(countries => {
+      console.log(countries);
       const array = [];
       for (const country of countries) {
         if (
@@ -21,11 +22,13 @@ function handleInput(event) {
         )
           array.push(country);
       }
+
       console.log(array);
-      if (array.length === 1) {
-        renderCountryInfo(array);
-      } else {
+      if(array.length > 10) {Notiflix.Notify.info("Too many matches found. Please enter a more specific name.")}
+      else if (array.length > 1) {
         renderList(array);
+      } else {
+        renderCountryInfo(array);
       }
     })
     .catch(error => console.log(error));
