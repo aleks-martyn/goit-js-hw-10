@@ -11,7 +11,19 @@ inputEl.addEventListener('input', debounce(handleInput, DEBOUNCE_DELAY));
 
 function handleInput(event) {
   fetchCountries(event)
-    .then(countries => renderList(countries))
+    .then(countries => {
+      const array = [];
+      for (const country of countries) {
+        if (
+          country.name.official
+            .toLowerCase()
+            .includes(event.target.value.toLowerCase())
+        )
+          array.push(country);
+      }
+      console.log(array);
+      renderList(array);
+    })
     .catch(error => console.log(error));
 }
 
@@ -29,12 +41,7 @@ function fetchCountries(name) {
 function renderList(countries) {
   const markup = countries
     .map(country => {
-      if (
-        country.name.official
-          .toLowerCase()
-          .includes(inputEl.value.toLowerCase().trim())
-      )
-        return `<li style="display:flex; align-items:center; gap:10px">
+      return `<li style="display:flex; align-items:center; gap:10px">
         <img src="${country.flags.svg}" alt="${country.flags.alt}" width=35 height=25 />
         <p>${country.name.official}</p>
       </li>`;
