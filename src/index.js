@@ -11,6 +11,8 @@ const infoEl = document.querySelector('.country-info');
 inputEl.addEventListener('input', debounce(handleInput, DEBOUNCE_DELAY));
 
 function handleInput(event) {
+  const countryName = event.target.value.trim();
+
   fetchCountries(event)
     .then(countries => {
       const array = [];
@@ -18,7 +20,7 @@ function handleInput(event) {
         if (
           country.name.official
             .toLowerCase()
-            .includes(event.target.value.toLowerCase().trim())
+            .includes(countryName.toLowerCase())
         )
           array.push(country);
       }
