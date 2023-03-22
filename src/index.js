@@ -59,20 +59,22 @@ function renderList(countries) {
 }
 
 function renderCountryInfo(countries) {
-  const languagesArray = Object.values(countries[0].languages);
+  if (countries.length > 0) {
+    const languagesArray = Object.values(countries[0].languages);
 
-  const markup = countries
-    .map(country => {
-      return `<div>
+    const markup = countries
+      .map(country => {
+        return `<div>
         <img src="${country.flags.svg}" alt="${country.flags.alt}" width=35 height=25 />
         <p>${country.name.official}</p>
         <p><b>Capital</b>: ${country.capital}</p>
         <p><b>Population</b>: ${country.population}</p>
         <p><b>Languages</b>: ${languagesArray}</p>
       </div>`;
-    })
-    .join('');
-  console.log(markup);
+      })
+      .join('');
+    console.log(markup);
 
-  infoEl.innerHTML = markup;
+    infoEl.innerHTML = markup;
+  }
 }
