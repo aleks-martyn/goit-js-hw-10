@@ -1,6 +1,7 @@
 import './css/styles.css';
 import Notiflix from 'notiflix';
 import debounce from 'lodash.debounce';
+import { fetchCountries } from "./my-module";
 
 const DEBOUNCE_DELAY = 300;
 const inputEl = document.querySelector('#search-box');
@@ -17,7 +18,7 @@ function handleInput(event) {
         if (
           country.name.official
             .toLowerCase()
-            .includes(event.target.value.toLowerCase())
+            .includes(event.target.value.toLowerCase().trim())
         )
           array.push(country);
       }
@@ -31,17 +32,6 @@ function handleInput(event) {
       }
     })
     .catch(error => console.log(error));
-}
-
-function fetchCountries(name) {
-  return fetch(
-    'https://restcountries.com/v3.1/all?fields=name,capital,population,flags,languages'
-  ).then(response => {
-    if (!response.ok) {
-      throw new Error(response.status);
-    }
-    return response.json();
-  });
 }
 
 function renderList(countries) {
