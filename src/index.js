@@ -51,14 +51,14 @@ function renderList(countries) {
   listEl.innerHTML = markup;
 }
 
-function renderCountryInfo(country) {
-  const languagesArray = Object.values(country.languages);
+function renderCountryInfo(countries) {
+  const languagesArray = Object.values(countries[0].languages);
 
   const markup = `<div>
-        <img src="${country.flags.svg}" alt="${country.flags.alt}" width=35 height=25 />
-        <p>${country.name.official}</p>
-        <p><b>Capital</b>: ${country.capital}</p>
-        <p><b>Population</b>: ${country.population}</p>
+        <img src="${countries[0].flags.svg}" alt="${countries[0].flags.alt}" width=35 height=25 />
+        <p>${countries[0].name.official}</p>
+        <p><b>Capital</b>: ${countries[0].capital}</p>
+        <p><b>Population</b>: ${countries[0].population}</p>
         <p><b>Languages</b>: ${languagesArray}</p>
       </div>`;
 
