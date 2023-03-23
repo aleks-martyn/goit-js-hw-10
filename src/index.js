@@ -13,7 +13,7 @@ inputEl.addEventListener('input', debounce(handleInput, DEBOUNCE_DELAY));
 function handleInput(event) {
   const countryName = event.target.value.trim();
 
-  fetchCountries(event)
+  fetchCountries(countryName)
     .then(countries => {
       const array = [];
       for (const country of countries) {
