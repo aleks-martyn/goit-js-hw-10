@@ -12,8 +12,8 @@ inputEl.addEventListener('input', debounce(handleInput, DEBOUNCE_DELAY));
 
 function handleInput(event) {
   const countryName = event.target.value.trim();
-  clearInput();
-  
+  clearMarkup();
+
   fetchCountries(countryName)
     .then(countries => {
       console.log(countries);
@@ -63,7 +63,7 @@ function renderCountryInfo(countries) {
   }
 }
 
-function clearInput() {
+function clearMarkup() {
   listEl.innerHTML = "";
   infoEl.innerHTML = "";
 }
