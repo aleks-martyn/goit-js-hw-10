@@ -12,12 +12,13 @@ inputEl.addEventListener('input', debounce(handleInput, DEBOUNCE_DELAY));
 
 function handleInput(event) {
   const countryName = event.target.value.trim();
-
+  clearInput();
+  
   fetchCountries(countryName)
     .then(countries => {
       console.log(countries);
-      
-      if(countries.length > 10) {Notiflix.Notify.info("Too many matches found. Please enter a more specific name.")}
+
+      if (countries.length > 10) { Notiflix.Notify.info("Too many matches found. Please enter a more specific name."); }
       else if (countries.length > 1) {
         renderList(countries);
       } else {
@@ -60,4 +61,9 @@ function renderCountryInfo(countries) {
 
     infoEl.innerHTML = markup;
   }
+}
+
+function clearInput() {
+  listEl.innerHTML = "";
+  infoEl.innerHTML = "";
 }
