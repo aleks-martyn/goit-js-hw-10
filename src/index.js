@@ -15,25 +15,16 @@ function handleInput(event) {
 
   fetchCountries(countryName)
     .then(countries => {
-      const array = [];
-      for (const country of countries) {
-        if (
-          country.name.official
-            .toLowerCase()
-            .includes(countryName.toLowerCase())
-        )
-          array.push(country);
-      }
-
-      console.log(array);
-      if(array.length > 10) {Notiflix.Notify.info("Too many matches found. Please enter a more specific name.")}
-      else if (array.length > 1) {
-        renderList(array);
+      console.log(countries);
+      
+      if(countries.length > 10) {Notiflix.Notify.info("Too many matches found. Please enter a more specific name.")}
+      else if (countries.length > 1) {
+        renderList(countries);
       } else {
-        renderCountryInfo(array);
+        renderCountryInfo(countries);
       }
     })
-    .catch(error => console.log(error));
+    .catch(error => Notiflix.Notify.failure("Oops, there is no country with that name"));
 }
 
 function renderList(countries) {
